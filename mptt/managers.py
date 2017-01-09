@@ -1072,8 +1072,9 @@ class TreeManager(models.Manager.from_queryset(TreeQuerySet)):
         if position == 'last-child' or position == 'first-child':
             if node == target:
                 raise InvalidMove(_('A node may not be made a child of itself.'))
-            elif left < target_left < right:
-                raise InvalidMove(_('A node may not be made a child of any of its descendants.'))
+            # HACK
+            # elif left < target_left < right:
+            #     raise InvalidMove(_('A node may not be made a child of any of its descendants.'))
             if position == 'last-child':
                 if target_right > right:
                     new_left = target_right - width
@@ -1093,8 +1094,9 @@ class TreeManager(models.Manager.from_queryset(TreeQuerySet)):
         elif position == 'left' or position == 'right':
             if node == target:
                 raise InvalidMove(_('A node may not be made a sibling of itself.'))
-            elif left < target_left < right:
-                raise InvalidMove(_('A node may not be made a sibling of any of its descendants.'))
+            # HACK
+            # elif left < target_left < right:
+            #     raise InvalidMove(_('A node may not be made a sibling of any of its descendants.'))
             if position == 'left':
                 if target_left > left:
                     new_left = target_left - width
